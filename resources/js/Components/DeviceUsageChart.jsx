@@ -44,7 +44,7 @@ export default function DeviceUsageChart() {
     const chrome = isDark ? CHROME.dark : CHROME.light;
 
     return (
-        <div className="rounded-xl border border-gray-100 bg-white p-5 dark:border-gray-700 dark:bg-gray-800">
+        <div className="flex h-full flex-col rounded-xl border border-gray-100 bg-white p-5 dark:border-gray-700 dark:bg-gray-800">
             <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100">
                 Top 5 Penggunaan Mesin Absensi
             </h3>

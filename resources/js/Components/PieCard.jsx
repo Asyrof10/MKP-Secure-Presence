@@ -48,12 +48,12 @@ export default function PieCard({ title, data }) {
     const total = data.reduce((sum, d) => sum + d.value, 0);
 
     return (
-        <div className="flex flex-col rounded-xl border border-gray-100 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
-            <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-100">
+        <div className="flex h-full flex-col rounded-xl border border-gray-100 bg-white p-5 dark:border-gray-700 dark:bg-gray-800">
+            <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100">
                 {title}
             </h3>
 
-            <div className="h-40 w-full">
+            <div className="mt-2 min-h-[10rem] w-full flex-1">
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                         <Pie
@@ -77,7 +77,7 @@ export default function PieCard({ title, data }) {
                 </ResponsiveContainer>
             </div>
 
-            <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
+            <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
                 {data.map((d, i) => (
                     <span
                         key={d.name}

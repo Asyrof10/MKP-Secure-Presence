@@ -21,9 +21,9 @@ const ROWS = [
 
 export default function BlacklistTable() {
     return (
-        <div className="flex h-full max-h-[420px] flex-col rounded-xl border border-gray-100 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
-            <div className="mb-1 flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-100">
+        <div className="flex h-full max-h-96 flex-col rounded-xl border border-gray-100 bg-white p-5 dark:border-gray-700 dark:bg-gray-800 lg:max-h-none">
+            <div className="mb-2 flex items-center justify-between">
+                <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100">
                     Blacklist
                 </h3>
                 <span className="flex items-center gap-1 text-xs text-gray-400">
@@ -32,7 +32,7 @@ export default function BlacklistTable() {
                 </span>
             </div>
 
-            <div className="mt-1 flex-1 overflow-y-auto">
+            <div className="min-h-0 flex-1 overflow-y-auto">
                 <table className="w-full text-left text-sm">
                     <tbody>
                         {ROWS.map((row) => (

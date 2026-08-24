@@ -12,8 +12,8 @@ export default function AttendanceGauge({ title, percent, sublabel }) {
     const offset = CIRCUMFERENCE * (1 - percent / 100);
 
     return (
-        <div className="flex flex-col items-center rounded-xl border border-gray-100 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
-            <h3 className="self-start text-sm font-semibold text-gray-800 dark:text-gray-100">
+        <div className="flex h-full flex-col items-center justify-center rounded-xl border border-gray-100 bg-white p-5 dark:border-gray-700 dark:bg-gray-800">
+            <h3 className="self-start text-base font-semibold text-gray-800 dark:text-gray-100">
                 {title}
             </h3>
 

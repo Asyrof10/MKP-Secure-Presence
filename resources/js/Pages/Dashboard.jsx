@@ -34,7 +34,7 @@ export default function Dashboard() {
         <AdminLayout header="MKP Secure Presence">
             <Head title="Dashboard" />
 
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:grid-rows-2">
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-4 lg:grid-rows-2">
                 <PieCard title="Divisi" data={DIVISI_DATA} />
                 <AttendanceGauge
                     title="Masuk"
