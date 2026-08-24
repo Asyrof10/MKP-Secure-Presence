@@ -21,7 +21,7 @@ const REGISTRATION = {
 
 export default function Dashboard() {
     return (
-        <AdminLayout header="Masook">
+        <AdminLayout header="MKP Secure Presence">
             <Head title="Dashboard" />
 
             <div className="space-y-6">

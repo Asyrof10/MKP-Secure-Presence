@@ -21,31 +21,43 @@ import { useState } from 'react';
 
 const NAV_ITEMS = [
     { label: 'Beranda', icon: LayoutGrid, route: 'dashboard' },
-    { label: 'Organisasi', icon: Building2 },
-    { label: 'Perangkat Absensi', icon: Fingerprint },
-    { label: 'User', icon: Users },
-    { label: 'Atribut', icon: Tag },
+    { label: 'Organisasi', icon: Building2, route: 'organisasi' },
+    { label: 'Perangkat Absensi', icon: Fingerprint, route: 'perangkat-absensi' },
+    { label: 'User', icon: Users, route: 'user' },
+    { label: 'Atribut', icon: Tag, route: 'atribut' },
     {
         label: 'Setting Jadwal Kerja',
         icon: CalendarClock,
-        children: ['Jadwal Kerja', 'Hari Libur'],
+        children: [
+            { label: 'Jadwal Kerja', route: 'jadwal-kerja' },
+            { label: 'Hari Libur', route: 'hari-libur' },
+        ],
     },
     {
         label: 'Pengajuan',
         icon: FileText,
-        children: ['Izin', 'Cuti', 'Lembur'],
+        children: [
+            { label: 'Izin', route: 'pengajuan.izin' },
+            { label: 'Cuti', route: 'pengajuan.cuti' },
+            { label: 'Lembur', route: 'pengajuan.lembur' },
+        ],
     },
-    { label: 'Riwayat Kehadiran', icon: History },
+    { label: 'Riwayat Kehadiran', icon: History, route: 'riwayat-kehadiran' },
     {
         label: 'Laporan',
         icon: FileText,
-        children: ['Laporan Harian', 'Laporan Bulanan'],
+        children: [
+            { label: 'Laporan Harian', route: 'laporan.harian' },
+            { label: 'Laporan Bulanan', route: 'laporan.bulanan' },
+        ],
     },
-    { label: 'Log Sistem', icon: ScrollText },
+    { label: 'Log Sistem', icon: ScrollText, route: 'log-sistem' },
 ];
 
 function NavItem({ item, current }) {
-    const [open, setOpen] = useState(false);
+    const childActive =
+        item.children?.some((child) => current(child.route)) ?? false;
+    const [open, setOpen] = useState(childActive);
     const Icon = item.icon;
     const isActive = item.route && current(item.route);
 
@@ -55,7 +67,11 @@ function NavItem({ item, current }) {
                 <button
                     type="button"
                     onClick={() => setOpen((v) => !v)}
-                    className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-gray-600 transition hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700/50"
+                    className={`flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition ${
+                        childActive
+                            ? 'text-brand-700 dark:text-brand-300'
+                            : 'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700/50'
+                    }`}
                 >
                     <span className="flex items-center gap-3">
                         <Icon className="h-5 w-5 shrink-0" />
@@ -68,14 +84,18 @@ function NavItem({ item, current }) {
                 {open && (
                     <div className="ms-8 mt-1 space-y-1 border-s border-gray-200 ps-3 dark:border-gray-700">
                         {item.children.map((child) => (
-                            <a
-                                key={child}
-                                href="#"
-                                className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700/50 dark:hover:text-gray-200"
+                            <Link
+                                key={child.route}
+                                href={route(child.route)}
+                                className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition ${
+                                    current(child.route)
+                                        ? 'font-medium text-brand-700 dark:text-brand-300'
+                                        : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700/50 dark:hover:text-gray-200'
+                                }`}
                             >
                                 <ChevronRight className="h-3.5 w-3.5 shrink-0" />
-                                {child}
-                            </a>
+                                {child.label}
+                            </Link>
                         ))}
                     </div>
                 )}
@@ -168,7 +188,7 @@ export default function AdminLayout({ header, children }) {
                             <Menu className="h-5 w-5" />
                         </button>
                         <h1 className="text-lg font-semibold text-white">
-                            {header ?? 'Masook'}
+                            {header ?? 'MKP Secure Presence'}
                         </h1>
                     </div>
 
