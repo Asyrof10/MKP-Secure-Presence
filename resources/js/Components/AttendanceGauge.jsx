@@ -44,17 +44,18 @@ export default function AttendanceGauge({ title, percent, sublabel }) {
                         strokeDashoffset={offset}
                     />
                 </svg>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-3xl font-bold tabular-nums text-gray-800 dark:text-gray-100">
                         {percent}%
                     </span>
-                    {sublabel && (
-                        <span className="mt-0.5 text-xs text-gray-400">
-                            {sublabel}
-                        </span>
-                    )}
                 </div>
             </div>
+
+            {sublabel && (
+                <p className="mt-3 max-w-[9rem] text-center text-xs text-gray-400">
+                    {sublabel}
+                </p>
+            )}
         </div>
     );
 }
